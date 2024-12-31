@@ -95,7 +95,7 @@ ARG WITH_KUBECTL=true
 ARG WITH_HELM=true
 ARG WITH_GIT=true
 
-RUN pip install --upgrade pip==24.2
+RUN pip install --upgrade pip==24.2 -i https://mirrors.tencent.com/pypi/simple/
 
 RUN apt-get update \
     && apt-get install -y ca-certificates wget curl jq unzip build-essential unixodbc xmlsec1  software-properties-common \
@@ -170,7 +170,7 @@ RUN mkdir -p /tmp/gobuildwarm && cd /tmp/gobuildwarm && go mod init gobuildwarm 
 
 ENV TZ=Etc/UTC
 
-RUN /usr/local/bin/python3 -m pip install pip-tools
+RUN /usr/local/bin/python3 -m pip install pip-tools  -i https://mirrors.tencent.com/pypi/simple/
 
 COPY --from=builder /frontend/build /static_frontend
 COPY --from=builder /windmill/target/release/windmill ${APP}/windmill
